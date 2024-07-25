@@ -5,7 +5,7 @@ The project is based on a **react client** to handle the requests to the API, qu
 
 To run the project it's needed to run the following command in a terminal located on the root folder of the project:
 ```bash
-cd npm i && npm start
+npm i && npm start
 ```
 After this a front client should be running on localhost:3000 (a new window on your default browser should open itself).
 
