@@ -19,3 +19,16 @@ export interface PokemonDetails {
   height: number,
   sprites: PokemonSprites,
 }
+
+export interface ListDetails {
+  dataList: (PokemonDetails | undefined)[]
+}
+
+export interface ListTypes {
+  typeList: string[]
+}
+
+export interface ImageData {
+  url: string | null,
+  name: string,
+}

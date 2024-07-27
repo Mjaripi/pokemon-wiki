@@ -1,9 +1,9 @@
-import { PokemonList } from '../../entities/list.types'
+import { ListDetails } from '../../entities/details.types'
+import { PokeImage } from './table-elements';
 
 const DataTable = ({
-  results,
-}: PokemonList
-) => {
+  dataList,
+}: ListDetails) => {
   return (
     <div className="col-span-1 border p-5 rounded-md">
         <table className="w-full border-collapse border border-slate-500 rounded">
@@ -15,14 +15,17 @@ const DataTable = ({
             </tr>
           </thead>
           <tbody>
-            { results.map((element, index) => {
+            { dataList.map((data, index) => {
               return (
-                <tr key={index}>
-                  <td className="border border-slate-400 px-2">{ index + 1 }</td>
-                  <td className="border border-slate-400 pl-2 pr-10">{ element.name }</td>
-                  <td className="border border-slate-400 p-2">IMAGE</td>
+                data &&
+                <tr key={`${data.name}-${index}`}>
+                  <td className="border border-slate-400 px-2">{ data.id }</td>
+                  <td className="border border-slate-400 pl-2 pr-10">{ data.name }</td>
+                  <td className="border border-slate-400 p-2">
+                    <PokeImage url={data.sprites.front_default} name={data.name}/>
+                  </td>
                 </tr>
-              )
+              );
             })} 
           </tbody>
         </table>
