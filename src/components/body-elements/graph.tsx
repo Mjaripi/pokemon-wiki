@@ -30,13 +30,15 @@ const DataGraph = (args: ListGraphData) => {
       {
         label: 'Pokémons',
         data: graphList,
+        borderColor: 'grey',
+        backgroundColor: 'teal',
       }
     ],
   };
 
 	return (
-		<div className="basis-3/6 border p-5 rounded-md">
-      <Bubble data={data} options={options}/>
+		<div className="basis-3/6 border p-3 rounded-md">
+      <Bubble data={data} options={options} />
     </div>
 	)
 }

@@ -21,7 +21,8 @@ const prepDist = (results: UseQueryResult<PokemonDetails, Error>[]) => {
 
   results.forEach((result) => {
     if (result.data){
-      const { weight, height } = result.data
+      const weight = (result.data.weight * 0.1).toFixed(2);
+      const height = (result.data.height * 0.1).toFixed(2);
 
       let foundIndex = -1;
       

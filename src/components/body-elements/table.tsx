@@ -5,14 +5,20 @@ const DataTable = ({
   dataList,
 }: ListDetails) => {
   return (
-    <div className="basis-2/6 border p-5 rounded-md">
+    <div className="basis-2/6 border p-2 rounded-md">
         <div className="overflow-y-auto h-full">
-          <table className="w-full border-collapse border border-slate-500 rounded">
-            <thead className="bg-teal-500">
+          <table className="w-full border-collapse border border-teal-500 rounded">
+            <thead className="bg-teal-500 sticky top-0">
               <tr>
-                <th className="text-gray-800 px-2">id</th>
-                <th className="text-gray-800 px-12">Nombre</th>
-                <th className="text-gray-800 px-4">Sprite</th>
+                <th className="border border-teal-500 text-gray-800">
+                  <p className="text-xl">id</p>
+                </th>
+                <th className="border border-teal-500 text-gray-800">
+                  <p className="text-xl">Nombre</p>
+                </th>
+                <th className="border border-teal-500 text-gray-800">
+                  <p className="text-xl">Sprite</p>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -20,9 +26,13 @@ const DataTable = ({
                 return (
                   data &&
                   <tr key={`${data.name}-${index}`}>
-                    <td className="border border-slate-400 px-2">{ data.id }</td>
-                    <td className="border border-slate-400 pl-2 pr-10">{ data.name }</td>
-                    <td className="border border-slate-400 p-2">
+                    <td className="border border-slate-400 w-1/12">
+                      <p className="text-center">{ data.id }</p>
+                    </td>
+                    <td className="border border-slate-400 w-8/12">
+                      <p className="indent-4">{ data.name }</p>
+                    </td>
+                    <td className="border border-slate-400 w-3/12">
                       <PokeImage url={data.sprites.front_default} name={data.name}/>
                     </td>
                   </tr>

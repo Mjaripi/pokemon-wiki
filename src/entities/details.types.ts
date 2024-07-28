@@ -38,8 +38,8 @@ export interface ImageData {
 }
 
 export interface BubbleChartElement {
-  x: number,
-  y: number,
+  x: string,
+  y: string,
   count: number,
 }
 
