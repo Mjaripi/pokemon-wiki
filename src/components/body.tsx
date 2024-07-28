@@ -78,7 +78,7 @@ const BodyElement = () => {
   });
 
 	return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="flex flex-row h-5/6 gap-4">
       <DataTable dataList={ pokeDataQueries.data }/>
       <DataFilters typeList={ pokeDataQueries.types } />
       <DataGraph graphList={ pokeDataQueries.heightAndWeightDist } />

@@ -5,7 +5,7 @@ const DataFilters = (
 	typeList,
 }: ListTypes) => {
 	return (
-		<div className="col-span-1 border p-5 rounded-md">
+		<div className="basis-1/6 border p-5 rounded-md">
       <table className="w-full border-collapse border border-slate-500 rounded">
 				<thead className="bg-teal-500">
 					<tr>

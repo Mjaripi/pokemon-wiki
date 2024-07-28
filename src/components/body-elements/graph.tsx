@@ -9,7 +9,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { options, plugins } from './graph-elements';
+import { options } from './graph-elements';
 import { ListGraphData } from '../../entities/details.types';
 
 ChartJS.register(
@@ -34,9 +34,8 @@ const DataGraph = (args: ListGraphData) => {
     ],
   };
 
-  console.log(graphList)
 	return (
-		<div className="col-span-1 border p-5 rounded-md">
+		<div className="basis-3/6 border p-5 rounded-md">
       <Bubble data={data} options={options}/>
     </div>
 	)

@@ -4,7 +4,7 @@ import './App.css';
 
 const App = () => {
   return (
-    <div className="p-5">
+    <div className="p-5 h-screen">
       <HeaderElement />
       <BodyElement />
     </div>
