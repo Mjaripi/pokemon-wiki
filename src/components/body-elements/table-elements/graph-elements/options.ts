@@ -5,7 +5,11 @@ const labelFormat = function (
   this: TooltipModel<"bubble">,
   tooltipItem: TooltipItem<"bubble">,
 ){
-  return `(${tooltipItem.parsed.x} kg, ${tooltipItem.parsed.y} m): ${(tooltipItem.raw as BubbleChartElement).count} PkMn`
+  const xValue = tooltipItem.parsed.x;
+  const yValue = tooltipItem.parsed.y;
+  const countValue = (tooltipItem.raw as BubbleChartElement).count;
+
+  return `(${xValue} kg, ${yValue} m): ${countValue} ${countValue > 1 ? 'PkMns' : 'PkMn'}`
 }
 
 const options = {

@@ -1,24 +1,23 @@
+import { typesDicc } from '../common';
 import { DataFiltersArgs } from '../../entities/components.types';
 
-const typesDicc: {
-	[key: string]: string
-} = {
-	grass: 'Planta',
-	poison: 'Veneno',
-	fire: 'Fuego',
-	flying: 'Volador',
-	water: 'Agua',
-	bug: 'Bicho',
-	normal: 'Normal',
-	electric: 'Eléctrico',
-	ground: 'Tierra',
-}
-
 const DataFilters = (args: DataFiltersArgs) => {
-	const { typeList, filters, setfilters } = args;
+	const { typeList, filters, setFilters } = args;
 
 	const selectRow = (data: string) => {
-		console.log(data)
+		const { ids, types } = filters;
+		const foundIndex = types.indexOf(data);
+
+    if (foundIndex >= 0) {
+			types.splice(foundIndex,1);
+    } else {
+			types.push(data)
+		}
+
+		setFilters({
+			ids,
+			types,
+		})
 	}
 
 	return (
@@ -28,7 +27,7 @@ const DataFilters = (args: DataFiltersArgs) => {
 					<thead className="bg-teal-500 sticky top-0">
 						<tr>
 							<th className="border border-teal-500 text-gray-800">
-								<p className="text-xl">Tipos</p>
+								<p className="font-mono text-xl">Tipos</p>
 							</th>
 						</tr>
 					</thead>
@@ -37,7 +36,7 @@ const DataFilters = (args: DataFiltersArgs) => {
 							return (
 								<tr key={`${data}-${index}`} onClick={() => selectRow(data)}>
 									<td id={data} className="border border-slate-400 px-2">
-										<p className="bold text-center">{typesDicc[data]}</p>
+										<p className="font-mono font-bold text-center">{typesDicc[data]}</p>
 									</td>
 								</tr>
 							);

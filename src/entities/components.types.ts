@@ -1,25 +1,23 @@
 import { FilterElements, BubbleChartElement } from './details.types'
 import { PokemonDetails } from './details.types';
 
-export interface HeaderArgs {
-  filters: FilterElements,
-}
-
-export interface BodyArgs {
+export interface FilterUseState {
   filters: FilterElements,
   setFilters: React.Dispatch<React.SetStateAction<FilterElements>>,
 }
 
-export interface DataTableArgs {
+export interface HeaderArgs extends FilterUseState {}
+
+export interface FilterViewArgs extends FilterUseState {}
+
+export interface BodyArgs extends FilterUseState {}
+
+export interface DataTableArgs extends FilterUseState {
   dataList: (PokemonDetails | undefined)[]
-  filters: FilterElements,
-  setfilters: React.Dispatch<React.SetStateAction<FilterElements>>
 }
 
-export interface DataFiltersArgs {
+export interface DataFiltersArgs extends FilterUseState {
   typeList: string[]
-  filters: FilterElements,
-  setfilters: React.Dispatch<React.SetStateAction<FilterElements>>
 }
 
 export interface DataGraphArgs {

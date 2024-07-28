@@ -4,7 +4,6 @@ import { DataTable, DataFilters, DataGraph } from './body-elements';
 import { PokemonList } from '../entities/list.types';
 import { BodyArgs } from '../entities/components.types';
 import { PokemonDetails, BubbleChartElement } from '../entities/details.types';
-import { useState } from 'react';
 
 const listTypes = (results: UseQueryResult<PokemonDetails, Error>[]) => {
   const types: string[] = [];
@@ -80,11 +79,10 @@ const BodyElement = ({ filters, setFilters }: BodyArgs) => {
     }
   });
 
-  console.log(filters)
 	return (
     <div className="flex flex-row h-5/6 gap-4">
-      <DataTable dataList={ pokeDataQueries.data } filters={ filters } setfilters={ setFilters } />
-      <DataFilters typeList={ pokeDataQueries.types} filters={ filters } setfilters={ setFilters } />
+      <DataTable dataList={ pokeDataQueries.data } filters={ filters } setFilters={ setFilters } />
+      <DataFilters typeList={ pokeDataQueries.types} filters={ filters } setFilters={ setFilters } />
       <DataGraph graphList={ pokeDataQueries.heightAndWeightDist } />
     </div>
 	);
