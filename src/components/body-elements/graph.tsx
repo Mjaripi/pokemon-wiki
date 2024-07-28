@@ -9,8 +9,8 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { options } from './graph-elements';
-import { ListGraphData } from '../../entities/details.types';
+import { options } from './table-elements/graph-elements';
+import { DataGraphArgs } from '../../entities/components.types';
 
 ChartJS.register(
   CategoryScale,
@@ -22,7 +22,7 @@ ChartJS.register(
   Legend,
 );
 
-const DataGraph = (args: ListGraphData) => {
+const DataGraph = (args: DataGraphArgs) => {
   const { graphList } = args;
 
   const data = {

@@ -1,3 +1,8 @@
+export interface FilterElements {
+  ids: number[],
+  types: string[],
+}
+
 interface PokemonType {
   slot: number,
   type: {
@@ -18,18 +23,6 @@ export interface PokemonDetails {
   weight: number,
   height: number,
   sprites: PokemonSprites,
-}
-
-export interface ListDetails {
-  dataList: (PokemonDetails | undefined)[]
-}
-
-export interface ListTypes {
-  typeList: string[]
-}
-
-export interface ListGraphData {
-  graphList: BubbleChartElement[]
 }
 
 export interface ImageData {

@@ -1,5 +1,5 @@
 import { TooltipModel, TooltipItem } from "chart.js";
-import { BubbleChartElement } from "../../../entities/details.types";
+import { BubbleChartElement } from "../../../../entities/details.types";
 
 const labelFormat = function (
   this: TooltipModel<"bubble">,

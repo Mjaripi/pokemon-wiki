@@ -1,6 +1,6 @@
-import { ImageData } from '../../../entities/details.types';
+import { PokeImageArgs } from '../../../entities/components.types';
 
-const PokeImage = (args: ImageData) => {
+const PokeImage = (args: PokeImageArgs) => {
   const { url, name } = args;
 
   return (

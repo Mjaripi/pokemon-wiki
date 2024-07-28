@@ -2,7 +2,9 @@ import axios from 'axios';
 import { useQueries, useQuery, UseQueryResult } from '@tanstack/react-query';
 import { DataTable, DataFilters, DataGraph } from './body-elements';
 import { PokemonList } from '../entities/list.types';
+import { BodyArgs } from '../entities/components.types';
 import { PokemonDetails, BubbleChartElement } from '../entities/details.types';
+import { useState } from 'react';
 
 const listTypes = (results: UseQueryResult<PokemonDetails, Error>[]) => {
   const types: string[] = [];
@@ -44,7 +46,7 @@ const prepDist = (results: UseQueryResult<PokemonDetails, Error>[]) => {
   return data;
 };
 
-const BodyElement = () => {
+const BodyElement = ({ filters, setFilters }: BodyArgs) => {
   const limit = 30
   const offset = 0
   const baseUrl = 'https://pokeapi.co/api/v2/';
@@ -78,10 +80,11 @@ const BodyElement = () => {
     }
   });
 
+  console.log(filters)
 	return (
     <div className="flex flex-row h-5/6 gap-4">
-      <DataTable dataList={ pokeDataQueries.data }/>
-      <DataFilters typeList={ pokeDataQueries.types } />
+      <DataTable dataList={ pokeDataQueries.data } filters={ filters } setfilters={ setFilters } />
+      <DataFilters typeList={ pokeDataQueries.types} filters={ filters } setfilters={ setFilters } />
       <DataGraph graphList={ pokeDataQueries.heightAndWeightDist } />
     </div>
 	);
