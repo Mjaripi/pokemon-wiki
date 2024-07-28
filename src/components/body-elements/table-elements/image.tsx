@@ -1,6 +1,8 @@
 import { ImageData } from '../../../entities/details.types';
 
-const PokeImage = ({ url, name }: ImageData) => {
+const PokeImage = (args: ImageData) => {
+  const { url, name } = args;
+
   return (
     url
     ? <img src={url} alt={`${name}_pk_image`} width="100"/>

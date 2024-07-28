@@ -28,7 +28,21 @@ export interface ListTypes {
   typeList: string[]
 }
 
+export interface ListGraphData {
+  graphList: BubbleChartElement[]
+}
+
 export interface ImageData {
   url: string | null,
   name: string,
+}
+
+export interface BubbleChartElement {
+  x: number,
+  y: number,
+  count: number,
+}
+
+export interface BubbleChartData {
+  data: BubbleChartElement[]
 }

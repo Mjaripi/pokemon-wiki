@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useQueries, useQuery, UseQueryResult } from '@tanstack/react-query';
 import { DataTable, DataFilters, DataGraph } from './body-elements';
 import { PokemonList } from '../entities/list.types';
-import { PokemonDetails } from '../entities/details.types';
+import { PokemonDetails, BubbleChartElement } from '../entities/details.types';
 
 const listTypes = (results: UseQueryResult<PokemonDetails, Error>[]) => {
   const types: string[] = [];
@@ -11,9 +11,36 @@ const listTypes = (results: UseQueryResult<PokemonDetails, Error>[]) => {
     result.data?.types.forEach((detail) => {
       if(!types.includes(detail.type.name)) types.push(detail.type.name)
     })
-  })
+  });
 
   return types;
+};
+
+const prepDist = (results: UseQueryResult<PokemonDetails, Error>[]) => {
+  const data: BubbleChartElement[] = [];
+
+  results.forEach((result) => {
+    if (result.data){
+      const { weight, height } = result.data
+
+      let foundIndex = -1;
+      
+      data.forEach((element, index) => {
+        if (element.x === weight && element.y === height)
+          foundIndex = index;
+      })
+
+      if(foundIndex > 0) {
+        const {x, y, count} = data[foundIndex]
+        data.push({ x, y, count: count + 1 })
+        data.splice(foundIndex,1);
+      } else {
+        data.push({ x: weight, y: height, count: 1 })
+      }
+    }
+  });
+
+  return data;
 };
 
 const BodyElement = () => {
@@ -45,17 +72,16 @@ const BodyElement = () => {
         data: results.map((result) => result.data),
         pending: results.some((result) => result.isPending),
         types: listTypes(results),
+        heightAndWeightDist: prepDist(results),
       }
     }
   });
-
-  console.log(pokeDataQueries.types)
 
 	return (
     <div className="grid grid-cols-3 gap-4">
       <DataTable dataList={ pokeDataQueries.data }/>
       <DataFilters typeList={ pokeDataQueries.types } />
-      <DataGraph dataList={ pokeDataQueries.data } />
+      <DataGraph graphList={ pokeDataQueries.heightAndWeightDist } />
     </div>
 	);
 }
