@@ -1,21 +1,8 @@
 import { typesDicc, selectedColor } from '../common';
 import { DataFiltersArgs } from '../../entities/components.types';
-import { EventEmitter } from 'stream';
 
 const DataFilters = (args: DataFiltersArgs) => {
 	const { typeList, filters, setFilters } = args;
-
-	const filterTypeList = (data: string[]) => {
-    const filteredTypes: string[] = [];
-    const { types } = filters;
-  
-    data.forEach((element) => {
-			if(( data.some((type) => types.includes(type))))
-				filteredTypes.push(element);
-    })
-
-    return filteredTypes;
-  };
 
 	const selectRow = (
 		event: React.MouseEvent<HTMLTableRowElement, MouseEvent>,

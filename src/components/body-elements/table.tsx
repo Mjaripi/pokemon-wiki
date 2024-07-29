@@ -7,17 +7,17 @@ const DataTable = (args: DataTableArgs) => {
   const { dataList, filters, setFilters } = args;
 
   const filterDataList = (data: (PokemonDetails | undefined)[]) => {
-    /* const filteredData: PokemonDetails[] = [];
     const { ids, types } = filters;
-  
+    
+    if(!(ids.length < 1 && types.length > 0)) return data;
+
+    const filteredData: PokemonDetails[] = [];
     data.forEach((element) => {
-      if(element) {
-        if((ids.includes(element.id) || element.types.some((type) => types.includes(type.type.name))))
-          filteredData.push(element);
-      }
+      if((element?.types.some((type) => types.includes(type.type.name))))
+        filteredData.push(element);
     })
 
-    return filteredData; */
+    return filteredData;
   };
 
   const selectRow = (
@@ -26,7 +26,7 @@ const DataTable = (args: DataTableArgs) => {
     currentTypes: PokemonType[]
   ) => {
     const { ids, types } = filters;
-    if (!(ids.length === 0 && types.length > 0)) {
+    if (!(ids.length < 1 && types.length > 0)) {
       const foundIdIndex = ids.indexOf(id);
       const currentClassName = event.currentTarget.className 
 
@@ -42,7 +42,6 @@ const DataTable = (args: DataTableArgs) => {
           }
         })
       } else {
-
         ids.push(id)
         event.currentTarget.className = currentClassName + selectedColor;
 
@@ -76,7 +75,7 @@ const DataTable = (args: DataTableArgs) => {
               </tr>
             </thead>
             <tbody>
-              { dataList.map((data, index) => {
+              { filterDataList(dataList).map((data, index) => {
                 return (
                   data &&
                   <tr key={`${data.name}-${index}`} onClick={(e) => selectRow(e,data.id, data.types)}>

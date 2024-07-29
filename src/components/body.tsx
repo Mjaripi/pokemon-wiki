@@ -11,10 +11,42 @@ const BodyElement = ({ filters, setFilters }: BodyArgs) => {
   const baseUrl = 'https://pokeapi.co/api/v2/';
   const path = `pokemon?limit=${limit}&offset=${offset}`;
 
+  const filterData = (results: UseQueryResult<PokemonDetails, Error>[]) => {
+    const { ids, types } = filters;
+    
+    if(!(ids.length < 1 && types.length > 0)) return results;
+
+    const filteredResults: UseQueryResult<PokemonDetails, Error>[] = [];
+    results.forEach((result) => {
+      if (result.data) {
+        if (result.data.types.some((type) => types.includes(type.type.name)))
+          filteredResults.push(result);
+      }
+    })
+
+    return filteredResults;
+  };
+
+  const filterResultsTypes = (results: UseQueryResult<PokemonDetails, Error>[]) => {
+    const { ids, types } = filters;
+
+		if (ids.length < 1) return results;
+		
+		const filteredResults: UseQueryResult<PokemonDetails, Error>[] = [];
+    results.forEach((result) => {
+      if (result.data) {
+        if(result.data.types.some((element) => types.includes(element.type.name)))
+          filteredResults.push(result);
+      }
+    })
+
+    return filteredResults;
+  }
+
   const listTypes = (results: UseQueryResult<PokemonDetails, Error>[]) => {
     const types: string[] = [];
   
-    results.forEach((result) => {
+    filterResultsTypes(results).forEach((result) => {
       result.data?.types.forEach((detail) => {
         if(!types.includes(detail.type.name)) types.push(detail.type.name)
       })
@@ -23,10 +55,30 @@ const BodyElement = ({ filters, setFilters }: BodyArgs) => {
     return types;
   };
   
+  const filterResultsDist = (results: UseQueryResult<PokemonDetails, Error>[]) => {
+    const { ids, types } = filters;
+    if (ids.length < 1 && types.length < 1) return results;
+
+    const filteredResults: UseQueryResult<PokemonDetails, Error>[] = [];
+    results.forEach((result) => {
+      if (result.data) {
+        if (ids.length > 0) {
+          if (ids.includes(result.data.id))
+            filteredResults.push(result);
+        } else {
+          if (result.data.types.some((element) => types.includes(element.type.name)))
+            filteredResults.push(result);
+        }
+      }
+    });
+
+    return filteredResults;
+  }
+
   const prepDist = (results: UseQueryResult<PokemonDetails, Error>[]) => {
     const data: BubbleChartElement[] = [];
-  
-    results.forEach((result) => {
+    
+    filterResultsDist(results).forEach((result) => {
       if (result.data){
         const weight = (result.data.weight * 0.1).toFixed(2);
         const height = (result.data.height * 0.1).toFixed(2);
@@ -38,7 +90,7 @@ const BodyElement = ({ filters, setFilters }: BodyArgs) => {
             foundIndex = index;
         })
   
-        if(foundIndex > 0) {
+        if(foundIndex >= 0) {
           const {x, y, count} = data[foundIndex]
           data.push({ x, y, count: count + 1 })
           data.splice(foundIndex,1);
@@ -71,10 +123,10 @@ const BodyElement = ({ filters, setFilters }: BodyArgs) => {
     }),
     combine: (results) => {
       return {
-        data: results.map((result) => result.data),
-        pending: results.some((result) => result.isPending),
+        data: filterData(results).map((result) => result.data),
         types: listTypes(results),
         heightAndWeightDist: prepDist(results),
+        pending: results.some((result) => result.isPending),
       }
     }
   });
