@@ -111,7 +111,6 @@ const BodyElement = ({ filters, setFilters }: BodyArgs) => {
 
   const pokeList = foundList ? foundList.results : [];
 
-  //Add queries based on pokelist data
   const pokeDataQueries = useQueries({
     queries: pokeList.map((element, index) => {
       return {
