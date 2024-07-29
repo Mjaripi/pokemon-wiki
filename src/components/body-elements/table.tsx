@@ -1,5 +1,5 @@
 import { selectedColor } from '../common';
-import { PokemonDetails, PokemonType } from '../../entities/details.types';
+import { PokemonType } from '../../entities/details.types';
 import { DataTableArgs } from '../../entities/components.types'
 import { PokeImage } from './table-elements';
 
