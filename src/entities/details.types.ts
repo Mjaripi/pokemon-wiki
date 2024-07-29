@@ -3,7 +3,7 @@ export interface FilterElements {
   types: string[],
 }
 
-interface PokemonType {
+export interface PokemonType {
   slot: number,
   type: {
     name: string,
@@ -25,17 +25,8 @@ export interface PokemonDetails {
   sprites: PokemonSprites,
 }
 
-export interface ImageData {
-  url: string | null,
-  name: string,
-}
-
 export interface BubbleChartElement {
   x: string,
   y: string,
   count: number,
-}
-
-export interface BubbleChartData {
-  data: BubbleChartElement[]
 }

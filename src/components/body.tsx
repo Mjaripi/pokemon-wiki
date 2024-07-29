@@ -5,51 +5,51 @@ import { PokemonList } from '../entities/list.types';
 import { BodyArgs } from '../entities/components.types';
 import { PokemonDetails, BubbleChartElement } from '../entities/details.types';
 
-const listTypes = (results: UseQueryResult<PokemonDetails, Error>[]) => {
-  const types: string[] = [];
-
-  results.forEach((result) => {
-    result.data?.types.forEach((detail) => {
-      if(!types.includes(detail.type.name)) types.push(detail.type.name)
-    })
-  });
-
-  return types;
-};
-
-const prepDist = (results: UseQueryResult<PokemonDetails, Error>[]) => {
-  const data: BubbleChartElement[] = [];
-
-  results.forEach((result) => {
-    if (result.data){
-      const weight = (result.data.weight * 0.1).toFixed(2);
-      const height = (result.data.height * 0.1).toFixed(2);
-
-      let foundIndex = -1;
-      
-      data.forEach((element, index) => {
-        if (element.x === weight && element.y === height)
-          foundIndex = index;
-      })
-
-      if(foundIndex > 0) {
-        const {x, y, count} = data[foundIndex]
-        data.push({ x, y, count: count + 1 })
-        data.splice(foundIndex,1);
-      } else {
-        data.push({ x: weight, y: height, count: 1 })
-      }
-    }
-  });
-
-  return data;
-};
-
 const BodyElement = ({ filters, setFilters }: BodyArgs) => {
-  const limit = 30
+  const limit = 40
   const offset = 0
   const baseUrl = 'https://pokeapi.co/api/v2/';
   const path = `pokemon?limit=${limit}&offset=${offset}`;
+
+  const listTypes = (results: UseQueryResult<PokemonDetails, Error>[]) => {
+    const types: string[] = [];
+  
+    results.forEach((result) => {
+      result.data?.types.forEach((detail) => {
+        if(!types.includes(detail.type.name)) types.push(detail.type.name)
+      })
+    });
+  
+    return types;
+  };
+  
+  const prepDist = (results: UseQueryResult<PokemonDetails, Error>[]) => {
+    const data: BubbleChartElement[] = [];
+  
+    results.forEach((result) => {
+      if (result.data){
+        const weight = (result.data.weight * 0.1).toFixed(2);
+        const height = (result.data.height * 0.1).toFixed(2);
+  
+        let foundIndex = -1;
+        
+        data.forEach((element, index) => {
+          if (element.x === weight && element.y === height)
+            foundIndex = index;
+        })
+  
+        if(foundIndex > 0) {
+          const {x, y, count} = data[foundIndex]
+          data.push({ x, y, count: count + 1 })
+          data.splice(foundIndex,1);
+        } else {
+          data.push({ x: weight, y: height, count: 1 })
+        }
+      }
+    });
+  
+    return data;
+  };
 
   const { data: foundList } = useQuery({
     queryKey: ['dexList'],

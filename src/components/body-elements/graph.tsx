@@ -31,7 +31,7 @@ const DataGraph = (args: DataGraphArgs) => {
         label: 'Pokémons',
         data: graphList,
         borderColor: 'grey',
-        backgroundColor: 'teal',
+        backgroundColor: 'rgb(253, 224, 71)',
       }
     ],
   };

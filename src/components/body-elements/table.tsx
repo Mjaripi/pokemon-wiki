@@ -1,23 +1,61 @@
+import { selectedColor } from '../common';
+import { PokemonDetails, PokemonType } from '../../entities/details.types';
 import { DataTableArgs } from '../../entities/components.types'
 import { PokeImage } from './table-elements';
 
 const DataTable = (args: DataTableArgs) => {
   const { dataList, filters, setFilters } = args;
 
-  const selectRow = (id: number) => {
+  const filterDataList = (data: (PokemonDetails | undefined)[]) => {
+    /* const filteredData: PokemonDetails[] = [];
     const { ids, types } = filters;
-    const foundIndex = ids.indexOf(id);
-
-    if (foundIndex >= 0) {
-      ids.splice(foundIndex,1);
-    } else {
-      ids.push(id)
-    }
-
-    setFilters({
-      ids,
-      types,
+  
+    data.forEach((element) => {
+      if(element) {
+        if((ids.includes(element.id) || element.types.some((type) => types.includes(type.type.name))))
+          filteredData.push(element);
+      }
     })
+
+    return filteredData; */
+  };
+
+  const selectRow = (
+    event: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
+    id: number,
+    currentTypes: PokemonType[]
+  ) => {
+    const { ids, types } = filters;
+    if (!(ids.length === 0 && types.length > 0)) {
+      const foundIdIndex = ids.indexOf(id);
+      const currentClassName = event.currentTarget.className 
+
+      if (foundIdIndex >= 0) {
+        ids.splice(foundIdIndex,1);
+        event.currentTarget.className = currentClassName.replace(selectedColor, '');
+        
+        currentTypes.forEach((element) => {
+          if (types.includes(element.type.name)) {
+            const foundTypeIndex = types.indexOf(element.type.name);
+
+            types.splice(foundTypeIndex,1);
+          }
+        })
+      } else {
+
+        ids.push(id)
+        event.currentTarget.className = currentClassName + selectedColor;
+
+        currentTypes.forEach((element) => {
+          types.push(element.type.name)
+        })
+      }
+
+      setFilters({
+        ids,
+        types,
+      })
+    }
   }
 
   return (
@@ -41,7 +79,7 @@ const DataTable = (args: DataTableArgs) => {
               { dataList.map((data, index) => {
                 return (
                   data &&
-                  <tr key={`${data.name}-${index}`} onClick={() => selectRow(data.id)}>
+                  <tr key={`${data.name}-${index}`} onClick={(e) => selectRow(e,data.id, data.types)}>
                     <td className="border border-slate-400 w-1/12">
                       <p className="font-mono text-center font-bold">{ data.id }</p>
                     </td>
