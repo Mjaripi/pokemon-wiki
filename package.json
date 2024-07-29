@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "@tanstack/react-query-devtools": "^5.51.11",
+    "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.4.6"
   },
   "dependencies": {
@@ -28,7 +29,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "tailwind": "npx tailwindcss -i ./src/input.css -o ./public/css/style.css --watch",
+    "prettier": "npx prettier --write **/*.tsx"
   },
   "eslintConfig": {
     "extends": [
