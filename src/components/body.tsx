@@ -18,10 +18,8 @@ const BodyElement = ({ filters, setFilters }: BodyArgs) => {
 
     const filteredResults: UseQueryResult<PokemonDetails, Error>[] = [];
     results.forEach((result) => {
-      if (result.data) {
-        if (result.data.types.some((type) => types.includes(type.type.name)))
-          filteredResults.push(result);
-      }
+      if (result.data?.types.some((type) => types.includes(type.type.name)))
+        filteredResults.push(result);
     })
 
     return filteredResults;
@@ -34,10 +32,8 @@ const BodyElement = ({ filters, setFilters }: BodyArgs) => {
 		
 		const filteredResults: UseQueryResult<PokemonDetails, Error>[] = [];
     results.forEach((result) => {
-      if (result.data) {
-        if(result.data.types.some((element) => types.includes(element.type.name)))
-          filteredResults.push(result);
-      }
+      if(result.data?.types.every((element) => types.includes(element.type.name)))
+        filteredResults.push(result);
     })
 
     return filteredResults;
