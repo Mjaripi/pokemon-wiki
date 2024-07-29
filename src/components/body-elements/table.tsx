@@ -6,20 +6,6 @@ import { PokeImage } from './table-elements';
 const DataTable = (args: DataTableArgs) => {
   const { dataList, filters, setFilters } = args;
 
-  const filterDataList = (data: (PokemonDetails | undefined)[]) => {
-    const { ids, types } = filters;
-    
-    if(!(ids.length < 1 && types.length > 0)) return data;
-
-    const filteredData: PokemonDetails[] = [];
-    data.forEach((element) => {
-      if((element?.types.some((type) => types.includes(type.type.name))))
-        filteredData.push(element);
-    })
-
-    return filteredData;
-  };
-
   const selectRow = (
     event: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
     id: number,
@@ -75,7 +61,7 @@ const DataTable = (args: DataTableArgs) => {
               </tr>
             </thead>
             <tbody>
-              { filterDataList(dataList).map((data, index) => {
+              { dataList.map((data, index) => {
                 return (
                   data &&
                   <tr key={`${data.name}-${index}`} onClick={(e) => selectRow(e,data.id, data.types)}>
