@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { HeaderElement, BodyElement } from './components';
 import { emptyFilters } from './components/common';
-import './App.css';
 
 const App = () => {
   const [ filters, setFilters ] = useState(emptyFilters)
