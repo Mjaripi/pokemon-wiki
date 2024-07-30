@@ -45,18 +45,18 @@ const DataTable = (args: DataTableArgs) => {
 
   return (
     <div className="basis-2/6 border p-2 rounded-md">
-        <div className="overflow-y-auto h-full">
-          <table className="w-full border-collapse border border-teal-500 rounded">
+        <div className="overflow-y-auto h-full border rounded-md">
+          <table className="w-full border-collapse">
             <thead className="bg-teal-500 sticky top-0">
               <tr>
                 <th className="border border-teal-500 text-gray-800">
-                  <p className="font-mono text-xl">id</p>
+                  <p className="text-xl">id</p>
                 </th>
                 <th className="border border-teal-500 text-gray-800">
-                  <p className="font-mono text-xl">Nombre</p>
+                  <p className="text-xl">Nombre</p>
                 </th>
                 <th className="border border-teal-500 text-gray-800">
-                  <p className="font-mono text-xl">Sprite</p>
+                  <p className="text-xl">Sprite</p>
                 </th>
               </tr>
             </thead>
@@ -64,14 +64,17 @@ const DataTable = (args: DataTableArgs) => {
               { dataList.map((data, index) => {
                 return (
                   data &&
-                  <tr key={`${data.name}-${index}`} onClick={(e) => selectRow(e,data.id, data.types)}>
-                    <td className="border border-slate-400 w-1/12">
-                      <p className="font-mono text-center font-bold">{ data.id }</p>
+                  <tr
+                    key={`${data.name}-${index}`}
+                    onClick={(e) => selectRow(e,data.id, data.types)}
+                  >
+                    <td className="border w-1/12">
+                      <p className="text-center font-bold">{ data.id }</p>
                     </td>
-                    <td className="border border-slate-400 w-8/12">
-                      <p className="font-mono indent-4">{ data.name.charAt(0).toUpperCase() + data.name.slice(1) }</p>
+                    <td className="border w-8/12">
+                      <p className="indent-4">{ data.name.charAt(0).toUpperCase() + data.name.slice(1) }</p>
                     </td>
-                    <td className="border border-slate-400 w-3/12">
+                    <td className="border w-3/12">
                       <PokeImage url={data.sprites.front_default} name={data.name}/>
                     </td>
                   </tr>
