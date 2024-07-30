@@ -14,25 +14,17 @@ const FilterView = ({ filters, setFilters }: FilterViewArgs) => {
 		}).toString()
 	}
 
-  const clearFilters = () => {
-    const selectedRow = Array.from(document.getElementsByClassName(selectedColor))
-
-    selectedRow.forEach((element) => {
-      const currentClassName = element.className
-      element.className = currentClassName.replace(selectedColor, '')
-    })
-    setFilters({ ids: [], types: [] })
-  }
-
 	return (
-    <div className="basis-2/3 text-left">
-      <div className="overflow-y-auto h-full text-wrap">
+    <div className="basis-2/3 text-left bg-inherit">
+      <div className="overflow-y-auto h-full text-wrap bg-inherit">
         { (ids.length > 0 || types.length > 0) &&
             (
               <div>
-                <p className="font-mono text-l indent-4 text-amber-400 font-bold">Filtros Activos <button className="text-sky-400" onClick={() => clearFilters()}> (Limpiar)</button></p>
-                  { ids.length > 0 && <p className="font-mono text-l indent-5 text-gray-400"> Ids: {ids.toString()}.</p> }
-                  { types.length > 0 && <p className="font-mono text-l indent-5 text-gray-400"> Tipos: {translateTypes(types)}.</p> }
+                <p className="text-l indent-4 text-amber-400 font-bold">
+                  Filtros Activos
+                </p>
+                  { ids.length > 0 && <p className="text-l indent-5 text-gray-400"> Ids: {ids.toString()}.</p> }
+                  { types.length > 0 && <p className="text-l indent-5 text-gray-400"> Tipos: {translateTypes(types)}.</p> }
               </div>
             )
           }

@@ -1,11 +1,4 @@
 
-import { FilterElements } from '../entities/details.types'
-
-const emptyFilters: FilterElements = {
-  ids: [],
-  types: [],
-}
-
 const typesDicc: {
 	[key: string]: string
 } = {
@@ -32,7 +25,6 @@ const typesDicc: {
 const selectedColor = 'bg-blue-200'
 
 export {
-  emptyFilters,
   typesDicc,
 	selectedColor,
 }

@@ -4,12 +4,15 @@ import { DataTable, DataFilters, DataGraph } from './body-elements';
 import { PokemonList } from '../entities/list.types';
 import { BodyArgs } from '../entities/components.types';
 import { PokemonDetails, BubbleChartElement } from '../entities/details.types';
+import { useState } from 'react';
 
 const BodyElement = ({ filters, setFilters }: BodyArgs) => {
   const limit = 40
   const offset = 0
   const baseUrl = 'https://pokeapi.co/api/v2/';
   const path = `pokemon?limit=${limit}&offset=${offset}`;
+
+  const [openDb, setOpenDb] = useState(null as (IDBFactory | null))
 
   const filterData = (results: UseQueryResult<PokemonDetails, Error>[]) => {
     const { ids, types } = filters;
@@ -129,7 +132,7 @@ const BodyElement = ({ filters, setFilters }: BodyArgs) => {
 	return (
     <div className="flex flex-row h-5/6 gap-4">
       <DataTable dataList={ pokeDataQueries.data } filters={ filters } setFilters={ setFilters } />
-      <DataFilters typeList={ pokeDataQueries.types} filters={ filters } setFilters={ setFilters } />
+      <DataFilters typeList={ pokeDataQueries.types} filters={ filters } setFilters={ setFilters } openDb={openDb} setOpenDb={setOpenDb}/>
       <DataGraph graphList={ pokeDataQueries.heightAndWeightDist } />
     </div>
 	);
