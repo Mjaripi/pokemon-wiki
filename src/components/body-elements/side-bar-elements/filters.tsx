@@ -1,8 +1,8 @@
 import React from 'react';
 import { typesDicc, selectedColor } from '../../common';
-import { DataFilterArgs } from '../../../entities/components.types';
+import { DataFilterInput } from '../../../entities/components.types';
 
-const DataFilters = (args: DataFilterArgs) => {
+const DataFilters = (args: DataFilterInput) => {
   const { typeList, filters, setFilters } = args;
 
   const clearFilters = () => {

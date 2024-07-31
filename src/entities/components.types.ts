@@ -15,19 +15,30 @@ export interface FilterElement {
   typeList: string[]
 }
 
-export interface HeaderArgs extends Omit<FilterUseState, 'setFilters'> {}
-export interface FilterViewArgs extends Omit<FilterUseState, 'setFilters'> {}
-export interface BodyArgs extends FilterUseState {}
-export interface DataTableArgs extends FilterUseState {
+export interface HeaderInput extends Omit<FilterUseState, 'setFilters'> {}
+export interface FilterViewInput extends Omit<FilterUseState, 'setFilters'> {}
+export interface OnlineDataInput extends Omit<FilterUseState, 'setFilters'> {}
+export interface BodyInput extends FilterUseState {}
+export interface DataTableInput extends FilterUseState {
   dataList: (PokemonDetails | undefined)[]
 }
-export interface DataSideBarArgs extends FilterUseState, OpenDbUseState, FilterElement {}
-export interface DataFilterArgs extends FilterUseState, FilterElement {}
-export interface DataOptionsArgs extends OpenDbUseState {}
-export interface DataGraphArgs {
+export interface DataSideBarInput extends FilterUseState, OpenDbUseState, FilterElement {}
+export interface DataFilterInput extends FilterUseState, FilterElement {}
+export interface DataOptionsInput extends OpenDbUseState {}
+export interface DataGraphInput {
   graphList: BubbleChartElement[]
 }
-export interface PokeImageArgs {
+export interface PokeImageInput {
   url: string | null,
   name: string,
+}
+
+export interface PokemonData {
+  data: (PokemonDetails | undefined)[];
+  types: string[];
+  heightAndWeightDist: BubbleChartElement[];
+  pending: boolean;
+}
+export interface OfflineDataInput extends Omit<OpenDbUseState, 'setOpenDb'> {
+  pokeDataQueries: PokemonData;
 }

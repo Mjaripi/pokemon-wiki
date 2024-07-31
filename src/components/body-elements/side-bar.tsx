@@ -1,8 +1,8 @@
 import React from 'react';
 import { DataFilters, DataOptions } from './side-bar-elements';
-import { DataSideBarArgs } from '../../entities/components.types';
+import { DataSideBarInput } from '../../entities/components.types';
 
-const DataSideBar = (args: DataSideBarArgs) => {
+const DataSideBar = (args: DataSideBarInput) => {
 	const { typeList, filters, setFilters, openDb ,setOpenDb } = args;
 
 	return (

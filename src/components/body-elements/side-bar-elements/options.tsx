@@ -1,7 +1,7 @@
 import React from 'react';
-import { DataOptionsArgs } from '../../../entities/components.types';
+import { DataOptionsInput } from '../../../entities/components.types';
 
-const DataOptions = (args: DataOptionsArgs) => {
+const DataOptions = (args: DataOptionsInput) => {
   const { openDb ,setOpenDb } = args;
 
   const toggleIndexDb = () => {

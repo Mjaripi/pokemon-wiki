@@ -22,9 +22,18 @@ const typesDicc: {
 	rock: 'Roca'
 }
 
+const dbCollections = {
+	data: 'pokeData',
+	types: 'typesData',
+	heightAndWeightDist: 'graphData',
+}
+
 const selectedColor = 'bg-blue-200'
+const indexedDbName = 'local-dex';
 
 export {
   typesDicc,
+	dbCollections,
 	selectedColor,
+	indexedDbName,
 }

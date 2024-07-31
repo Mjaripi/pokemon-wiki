@@ -1,8 +1,8 @@
 import React from 'react';
 import { FilterView, TitleSpace } from './header-elements'
-import { HeaderArgs } from '../entities/components.types';
+import { HeaderInput } from '../entities/components.types';
 
-const HeaderElement = (args: HeaderArgs) => {
+const HeaderElement = (args: HeaderInput) => {
 	const { filters } = args;
 
 	return (

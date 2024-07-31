@@ -1,10 +1,10 @@
 import React from 'react';
 import { selectedColor } from '../common';
 import { PokemonType } from '../../entities/details.types';
-import { DataTableArgs } from '../../entities/components.types'
+import { DataTableInput } from '../../entities/components.types'
 import { PokeImage } from './table-elements';
 
-const DataTable = (args: DataTableArgs) => {
+const DataTable = (args: DataTableInput) => {
   const { dataList, filters, setFilters } = args;
 
   const selectRow = (

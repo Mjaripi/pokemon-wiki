@@ -1,7 +1,7 @@
 import React from 'react';
-import { PokeImageArgs } from '../../../entities/components.types';
+import { PokeImageInput } from '../../../entities/components.types';
 
-const PokeImage = (args: PokeImageArgs) => {
+const PokeImage = (args: PokeImageInput) => {
   const { url, name } = args;
 
   return (
