@@ -1,3 +1,4 @@
+import React from 'react';
 import { PokeImageArgs } from '../../../entities/components.types';
 
 const PokeImage = (args: PokeImageArgs) => {

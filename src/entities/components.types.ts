@@ -11,8 +11,8 @@ export interface OpenDbUseState {
   setOpenDb: React.Dispatch<React.SetStateAction<IDBFactory | null>>
 }
 
-export interface HeaderArgs extends FilterUseState {}
-export interface FilterViewArgs extends FilterUseState {}
+export interface HeaderArgs extends Omit<FilterUseState, 'setFilters'> {}
+export interface FilterViewArgs extends Omit<FilterUseState, 'setFilters'> {}
 export interface BodyArgs extends FilterUseState {}
 export interface DataTableArgs extends FilterUseState {
   dataList: (PokemonDetails | undefined)[]

@@ -1,3 +1,4 @@
+import React from 'react';
 import { typesDicc, selectedColor } from '../common';
 import { DataFiltersArgs } from '../../entities/components.types';
 
@@ -52,20 +53,7 @@ const DataFilters = (args: DataFiltersArgs) => {
 			<div className="overflow-y-auto h-full w-full">
 				<div className="font-bold border-b-2 mb-2">
 					<p className="text-xl pb-2 text-center">Opciones</p>
-					<button
-						className="
-							bg-sky-400 
-							disabled:bg-sky-200 
-							disabled:text-gray-400 
-							hover:bg-sky-700 
-							hover:text-gray-50
-							w-full rounded-md py-3 mb-2"
-						type="button"
-						onClick={() => clearFilters()}
-						disabled={ filters.ids.length < 1 && filters.types.length < 1 }
-					>
-						Limpiar Filtros
-					</button>
+					
 					<button
 						className="
 							bg-amber-400 
@@ -106,6 +94,20 @@ const DataFilters = (args: DataFiltersArgs) => {
 				</div>
 				<div>
 					<p className="font-bold text-xl pb-2 text-center">Filtros</p>
+					<button
+						className="
+							bg-sky-400 
+							disabled:bg-sky-200 
+							disabled:text-gray-400 
+							hover:bg-sky-700 
+							hover:text-gray-50
+							w-full rounded-md py-2 mb-2"
+						type="button"
+						onClick={() => clearFilters()}
+						disabled={ filters.ids.length < 1 && filters.types.length < 1 }
+					>
+						Limpiar Filtros
+					</button>
 					<div className="overflow-y-auto w-full border rounded-md mb-2">
 						<table className="w-full border-collapse">
 							<thead className="bg-teal-500 sticky top-0">

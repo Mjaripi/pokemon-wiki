@@ -1,7 +1,8 @@
-import { typesDicc, selectedColor } from '../common'
+import React from 'react';
+import { typesDicc } from '../common'
 import { FilterViewArgs } from "../../entities/components.types";
 
-const FilterView = ({ filters, setFilters }: FilterViewArgs) => {
+const FilterView = ({ filters }: FilterViewArgs) => {
   const { ids, types } = filters;
 
   const translateTypes = (typesData: string[]) => {

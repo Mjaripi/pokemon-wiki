@@ -1,3 +1,4 @@
+import React from 'react';
 import { selectedColor } from '../common';
 import { PokemonType } from '../../entities/details.types';
 import { DataTableArgs } from '../../entities/components.types'

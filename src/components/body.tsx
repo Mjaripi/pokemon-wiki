@@ -1,3 +1,4 @@
+import React from 'react';
 import axios from 'axios';
 import { useQueries, useQuery, UseQueryResult } from '@tanstack/react-query';
 import { DataTable, DataFilters, DataGraph } from './body-elements';
@@ -57,7 +58,6 @@ const BodyElement = ({ filters, setFilters }: BodyArgs) => {
   const filterResultsDist = (results: UseQueryResult<PokemonDetails, Error>[]) => {
     const { ids, types } = filters;
     if (ids.length < 1 && types.length < 1) return results;
-
     const filteredResults: UseQueryResult<PokemonDetails, Error>[] = [];
     results.forEach((result) => {
       if (result.data) {
