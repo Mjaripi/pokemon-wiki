@@ -11,15 +11,19 @@ export interface OpenDbUseState {
   setOpenDb: React.Dispatch<React.SetStateAction<IDBFactory | null>>
 }
 
+export interface FilterElement {
+  typeList: string[]
+}
+
 export interface HeaderArgs extends Omit<FilterUseState, 'setFilters'> {}
 export interface FilterViewArgs extends Omit<FilterUseState, 'setFilters'> {}
 export interface BodyArgs extends FilterUseState {}
 export interface DataTableArgs extends FilterUseState {
   dataList: (PokemonDetails | undefined)[]
 }
-export interface DataFiltersArgs extends FilterUseState, OpenDbUseState {
-  typeList: string[]
-}
+export interface DataSideBarArgs extends FilterUseState, OpenDbUseState, FilterElement {}
+export interface DataFilterArgs extends FilterUseState, FilterElement {}
+export interface DataOptionsArgs extends OpenDbUseState {}
 export interface DataGraphArgs {
   graphList: BubbleChartElement[]
 }

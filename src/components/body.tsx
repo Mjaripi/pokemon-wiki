@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useQueries, useQuery, UseQueryResult } from '@tanstack/react-query';
-import { DataTable, DataFilters, DataGraph } from './body-elements';
+import { DataTable, DataSideBar, DataGraph } from './body-elements';
 import { PokemonList } from '../entities/list.types';
 import { BodyArgs } from '../entities/components.types';
 import { PokemonDetails, BubbleChartElement } from '../entities/details.types';
@@ -132,7 +132,7 @@ const BodyElement = ({ filters, setFilters }: BodyArgs) => {
 	return (
     <div className="flex flex-row h-5/6 gap-4">
       <DataTable dataList={ pokeDataQueries.data } filters={ filters } setFilters={ setFilters } />
-      <DataFilters typeList={ pokeDataQueries.types} filters={ filters } setFilters={ setFilters } openDb={openDb} setOpenDb={setOpenDb}/>
+      <DataSideBar typeList={ pokeDataQueries.types} filters={ filters } setFilters={ setFilters } openDb={openDb} setOpenDb={setOpenDb}/>
       <DataGraph graphList={ pokeDataQueries.heightAndWeightDist } />
     </div>
 	);
