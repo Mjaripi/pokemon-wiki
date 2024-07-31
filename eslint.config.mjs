@@ -13,7 +13,7 @@ export default [
       }
     },
     "rules": {
-        "no-console": "warn"
+        "no-console": ["warn", { "allow": ["error", "info"] }]
     }
   },
   pluginJs.configs.recommended,
