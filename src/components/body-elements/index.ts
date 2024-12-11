@@ -1,9 +1,9 @@
 import DataTable from "./table";
-import DataFilters from "./filters";
+import DataSideBar from "./side-bar";
 import DataGraph from "./graph";
 
 export {
   DataTable,
-  DataFilters,
+  DataSideBar,
   DataGraph,
 }

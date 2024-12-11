@@ -1,3 +1,4 @@
+import React from 'react';
 import { Bubble } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -10,7 +11,7 @@ import {
   Legend,
 } from 'chart.js';
 import { options } from './table-elements/graph-elements';
-import { DataGraphArgs } from '../../entities/components.types';
+import { DataGraphInput } from '../../entities/components.types';
 
 ChartJS.register(
   CategoryScale,
@@ -22,7 +23,7 @@ ChartJS.register(
   Legend,
 );
 
-const DataGraph = (args: DataGraphArgs) => {
+const DataGraph = (args: DataGraphInput) => {
   const { graphList } = args;
 
   const data = {

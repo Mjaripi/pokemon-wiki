@@ -1,11 +1,4 @@
 
-import { FilterElements } from '../entities/details.types'
-
-const emptyFilters: FilterElements = {
-  ids: [],
-  types: [],
-}
-
 const typesDicc: {
 	[key: string]: string
 } = {
@@ -29,10 +22,18 @@ const typesDicc: {
 	rock: 'Roca'
 }
 
+const dbCollections = {
+	data: 'pokeData',
+	types: 'typesData',
+	heightAndWeightDist: 'graphData',
+}
+
 const selectedColor = 'bg-blue-200'
+const indexedDbName = 'local-dex';
 
 export {
-  emptyFilters,
   typesDicc,
+	dbCollections,
 	selectedColor,
+	indexedDbName,
 }
